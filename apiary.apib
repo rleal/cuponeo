@@ -1,0 +1,1480 @@
+FORMAT: 1A
+HOST: https://api.cuponeo.local
+# Cuponeo
+
+API para gestionar promociones y programas de fidelización.
+
+**Nota: Todas las fechas y horas que recibe el webservice deben estár en zona horaria española  (UTC+1 , en verano UTC+2 )**
+
+
+# Data Structures
+
+## Data Objects
+
+
+### Addressbook Entry Data (object)
++ phone: `600123123` (string)
++ email: `test@email.com` (string)
+
+### Commerce Data (object)
++ id :  7
++ logo
++ name :  `Comercio prueba2`   
++ address  
++ lng   
++ lat   
++ radius :  1   
++ city :  `Castellón`   
++ province
++ country :  `España`   
++ created :  `2014-05-26 18:07:13` 
++ modified :  `2014-05-26 18:07:13`   
++ timezone :  `Europe/Madrid` 
+
+### Company Data (object)
++ id :  5
++ name :  `Nombre Compañía`   
+
+
+### Contract Data (object)
++ pack_id: 2
++ start: "2017-01-13"
++ expire: "2017-02-13"
++ status: "PE"
+
+### Pagination (object)
++ limit: 100 (number) - Número de resultados
++ page: 1 (number) - Número de página
+
+### Time Range (object)
++ start: `00:00:00`,
++ end: `24:00:00`
+
+### Valid Days (array)
++ MONDAY,
++ TUESDAY,
++ WEDNESDAY,
++ THURSDAY,
++ FRIDAY,
++ SATURDAY,
++ SUNDAY
+
+### Exchange Data (object)
++ id: 153
++ title: Rebajas verano,
++ description: Descripción larga de rebajas verano,
++ description_short: Rebajas verano,
++ push_message: ` `,
++ fixed_amount: 0,
++ percentage_amount: 500,
++ gift: ,
++ gift_products (array),
++ uses: 1 (number),
++ start_date: `2014-03-15 00:00:00`,
++ end_date: `2014-07-20 00:00:00`,
++ logo: `53a93924-dc74-415b-8a4f-4e31c0a80207.jpg`,
++ logo2: `53a93924-31dc-4fb0-be42-4e31c0a80207.jpg`,
++ created: `2014-07-03 11:23:24`,
++ modified: `2014-07-15 12:17:39`,
++ status: US,
++ automatic: 0,
++ notified: 1,
++ valid_days (array)
+    + TUESDAY
++ web: ` ` (optional),
++ auto_coupons: true (boolean),
++ linked: false (boolean),
++ type: coupon,
++ actual_uses: 1 (number),
++ code: RUQFP2MGAQMC4U3R,
++ date_added: `2014-06-24 09:03:48`,
++ user_name: John Doe,
++ commerce_name: Nombre de Comercio
+
+### Coupon Data (object)
++ actual_uses: 0 (string)
++ code: C2AQMBH5UDT2WW5M (string)
++ coupon_id: 881 (string)
++ date_added: `2014-11-25 17:42:31`
++ status: FI (string)
++ viewed: false (boolean)
++ favorite: false (boolean)
++ company_name: `Compañía prueba`
++ description: `Descripción completa de la promoción`
++ description_short: `Descripción corta de la promo`
++ end_date: `2014-11-26 00:00:00`
++ fixed_amount: 0 (string)
++ gift: ` `
++ gift_products (array)
+    + 1344
++ limit_uses: 3 (string)
++ logo
++ logo_brand
++ percentage_amount: 0
++ products (array)
+    + 302
++ promo_id: 466
++ loyalty_id
++ start_date: `2014-11-04 00:00:00`
++ time_ranges (array)
+    + (Time Range)
+    + (Time Range)
++ title: `Título de la promoción`
++ type: stamp
++ valid_days (Valid Days)
+
+
+### Loyalty Data
++ id: 1
++ user_id: 1
++ title: loyalty1
++ description: `loyalty1 desc`
++ description_short
++ logo: `https://raul.cuponeo.local/img/promos/logos/5326e47b-53cc-418d-868a-7c60c0a80164.png`
++ start_date: 2014-05-01 00:00:00
++ end_date: 2014-09-30 00:00:00
++ points: 1
++ amount: 10
++ created: 2014-05-15 00:00:00
++ modified: 2014-05-30 08:44:27
++ status: AC
+
+
+### Loyalty Gift Data (object)
++ id: 2051
++ points: 100
++ fixed_amount: 0
++ percentage_amount: 0
++ gift: colchoneta
+
+### Loyalty Member Data
++ id: 1
++ code: codei
++ loyalty_id: 1
++ user_id: 1
++ name: nombre
++ surname
++ surname2
++ country
++ province
++ locality
++ zip_code
++ gende
++ birthdate
++ dni
++ created: `2014-05-14 00:00:00`
++ modified: `2014-05-14 00:00:00`
+
+
+
+### Loyalty Member View Data
++ id: 24
++ code: 1YN5FX3CNB29ZZQB
++ loyalty_id: 1
++ user_id: 37
++ name: John
++ surname: Doe
++ surname2
++ country
++ province
++ locality
++ zip_code
++ gender
++ birthdate
++ dni
++ created: `2014-10-02 16:19:31`
++ modified: `2014-10-02 16:19:31`
++ last_points: 0
++ actual_points: 484
+
+### Loyalty Member Info Data
++ Loyalty
+    + title: `Verano 2014b`
+    + LoyaltyBenefit
+        + id: 373
+        + loyalty_id: 1
+        + percentage_amount: 2000
+        + start_date: 2015-06-09
+        + end_date: 2015-06-30
+
+
+### Promo Basic Data
++ auto_coupons: true
++ automatic: false
++ created: `2014-06-24 09:03:32`
++ description: `Refresco gratis por la compra de una hamburguesa.`
++ description_short: `Refresco gratis. ¡Cógelo!`
++ end_date: `2014-08-25 00:00:00`
++ fixed_amount: 0
++ gift: ` `
++ gift_products (array)
++ id: "157"
++ linked: false (boolean)
++ logo: `https://api.cuponeo.local/img/promos/logos/53a922c4-7c20-4b09-b78e-3e87c0a80207.jpg`
++ logo2: `https://api.cuponeo.local/img/promos/logos/53a922c4-b4d4-4a9e-8f0e-3e87c0a80207.png`
++ modified: `2014-09-24 13:37:38`
++ notified: true
++ parent_id
++ percentage_amount: 1500
++ products (array)
+    + 1026
+    + 1336
++ start_date: `2014-06-24 00:00:00`
++ status: FI
++ title: `Refresco gratis`
++ type: onceaday
++ uses: 1
++ valid_days (array)
+    + MONDAY
+    + TUESDAY
+    + WEDNESDAY
+    + THURSDAY
+    + FRIDAY
+    + SATURDAY
+    + SUNDAY
++ web: ` `
+
+
+
+### Promo Data (object)
++ Promo 
+    + id: 151
+    + parent_id
+    + title: `Refresco gratis`
+    + description: `Refresco gratis por la compra de una hamburguesa.`
+    + description_short: `Refresco gratis. ¡Cógelo!`
+    + push_message: ` `
+    + fixed_amount: 0
+    + percentage_amount: 1500
+    + gift: ` `
+    + gift_products (array)
+    + uses: 1
+    + start_date: `2014-06-24 00:00:00`
+    + end_date: `2014-08-25 00:00:00`
+    + logo: `https://api.cuponeo.local/img/promos/logos/53a922c4-7c20-4b09-b78e-3e87c0a80207.jpg`
+    + logo2: `https://api.cuponeo.local/img/promos/logos/53a922c4-b4d4-4a9e-8f0e-3e87c0a80207.png`
+    + created: `2014-06-24 09:03:32`
+    + modified: `2014-09-24 13:37:38`
+    + status: FI
+    + automatic: 0
+    + notified: 0
+    + valid_days (array)
+        + MONDAY
+        + TUESDAY
+        + WEDNESDAY
+        + THURSDAY
+        + FRIDAY
+        + SATURDAY
+        + SUNDAY
+    + web: ` `
+    + auto_coupons: 1
+    + linked: false (boolean)
+    + type: onceaday
+    + products (array)
+        + 1026
+        + 1336
++ Creator
+    + external_id: 247
+    + name: `John Doe`
++ Commerces (array)
+    + (object)
+        + external_id: 7
+        + company_id: 5
+        + logo
+        + name: `Comercio prueba2`
+        + address
+        + lng
+        + lat
+        + radius: 1
+        + city: Castellón
+        + province
+        + country: España
+        + created: `2014-05-26 18:07:13`
+        + modified: `2014-05-26 18:07:13`
+        + timezone: Europe/Madrid
++ TimeRanges (array)
+    + (object)
+        + id: 434
+        + promo_id: 151
+        + start: 08:00:00
+        + end: 19:00:00
+    + (object)
+        + id: 436
+        + promo_id: 151
+        + start: 16:00:00
+        + end: 22:00:00
+
++ Targets (array)
++ Child
+
+
+### Stats Coupons Data (object)
++ notifications
+    + email
+        + sent: 5 (number)
+        + opened: 3 (number)
+    + sms
+        + sent: 4 (number)
+    + user
+        + sent: 24 (number)
+        + opened: 1 (number)
++ coupon
+    + total: 2 (number)
+    + exchanged: 1 (number)
+    + unit_exchanges: 1 (number)
+    + used: 1 (number)
+    + type: onceaday
++ exchanges
+    + `2014-07-07 09:56:29`: 1,
+    + `2014-07-07 09:58:04`: 1
+    + `2014-07-23 15:55:44`: 1
++ volume_users_exchanges (array)
+    + (object)
+        + uses: 0
+        + users: 3
+    + (object)
+        + uses: 1
+        + users: 1
++ response_times
+    + min: 2
+    + avg: 1
+    + max: 0
+    
+
+### UserTarget Data (object)
++ age 
+    + min (number)
+    + max (number)
++ gender (string) - M|F
++ city (string)
++ province (string)
++ zip_code (string)
++ country (string)
++ business (array) - listado de ids de empresa
++ range - rango de distancia al comercio
+    + value (number)
+    + commerces (array) - listado de ids de comercio
+
+
+
+
+
+## Responses
+
+
+### Exchanges Response(Response)
++ data (array[Exchange Data]) - Datos de la respuesta
+
+### Contract Add Response (Response)
++ data (Contract Data)
+
+### Coupon Response (Response)
++ data (Coupon Data)
+
+### Coupons Response (Response)
++ data (array[Coupon Data]) - Datos de la respuesta
+
+### Response (object)
++ code: EC0001 (string) - Código de respuesta
++ success: true (boolean) - ¿Llamada realizada con éxito?
++ message: Éxito (string) - Descripción de respuesta
+
+### BasicResponse (Response)
++ data (array[]) - Datos de la respuesta
+
+### Addressbook Entries Response (Response)
++ data (array[Addressbook Entry Data]) - Datos del contacto
+
+### Stats Coupons Response (Response)
++ data (Stats Coupons Data)
+
+### Loyalties Response (Response)
++ data (array)
+    + (object)
+        + loyalty (Loyalty Data)
+        +  member_fields
+            +  id: 18
+            +  loyalty_id: 1
+            +  name: 0
+            +  surname: 1
+            +  surname2: 0
+            +  country: 0
+            +  province: 0
+            +  locality: 0
+            +  zip_code: 0
+            +  gender: 0
+            +  birthdate: 0
+            +  dni: 0
+        +  points_exchanges (array)
+            + (object)
+                +  id: 1
+                +  loyalty_id: 1
+                +  points: 10
+                +  fixed_amount: 1
+                +  percentage_amount: 0
+                +  gift: ` `
+            + (object)
+                +  id: 1
+                +  loyalty_id: 1
+                +  points: 10
+                +  fixed_amount: 1
+                +  percentage_amount: 0
+                +  gift: `¡Un mechero!`
+        +  commerces (array)
+            +  (object)
+                +  id: 11
+                +  name: commercio 11
+        +  company
+            +  name: company11
+        +  loyalty_benefits (array)
+            + (object)
+                +  id: 57
+                +  loyalty_id: 1
+                +  percentage_amount: 3
+                +  start_date: 2014-01-20 00:00:00
+                +  end_date: 2014-02-12 00:00:00
+
+### Loyalty Gifts Response (Response)
++ data (array[Loyalty Gift Data])
+
+### Loyalty Members List Response (Response)
++ data (array)
+    + (object)
+        + LoyaltyMember (Loyalty Member Data)
+        + MemberPoints (object)
+            + id: 4
+            + loyalty_id: 1
+            + loyalty_member_id: 1
+            + points: 413
+            + modified: `2014-05-14 18:04:27`
+
+### Loyalty Member View Response (Response)
++ data (Loyalty Member View Data)
+
+### Loyalty Member Info Response (Response)
++ data (Loyalty Member Info Data)
+
+### Loyalty Member Benefits Response (Response)
++ data (object)
+    + LoyaltyMember (Loyalty Member Data)
+    + Loyalty (Loyalty Data)
+        + LoyaltyBenefit (array)
+            + (object)
+                + id: 373
+                + loyalty_id: 1
+                + percentage_amount: 2000
+                + start_date: 2015-06-09
+                + end_date: 2015-06-30
+
+### Loyalty Member Exchange Points Rsponse (Response)
++ data (object)
+    + member_points
+        + id: 16
+        + loyalty_id: 1
+        + loyalty_member_id: 8
+        + points: 599990
+        + last_points: 2
+        + modified: `2014-09-05 10:04:34`
+    + coupon
+        + uses: 0
+        + status: AC
+        + viewed: 0
+        + type: exchange
+        + favorite: 0
+        + loyalty_member_id: 8
+        + code: D2GMYH963P1DP6GG
+        + fixed_amount: 0
+        + percentage_amount: 0
+        + gift: taza
+        + gift_products: false (boolean)
+        + products: ` `
+        + description: ` `
+        + modified: `2016-02-15 13:41:35`
+        + created: `2016-02-15 13:41:35`
+        + id: 619
+
+
+### Promo Response (Response)
++ data (Promo Data) - Datos detallados de la promoción
+
+### Promo List Response (Response)
++ data (array)
+    + (object)
+        + Promo (Promo Basic Data)
+        + Commerces (Commerce Data)
+        + TimeRanges (array)
+            + (object)
+                + start: 08:00:00
+                + end: 19:00:00
+        + Company (object)
+            + name
+        + Child (object)
+            + id
+   
+
+### User Summary Response (Response)
++ data (array)
+    + (object)
+        + commerce (Commerce Data)
+        + promotions_count: 0
+        + loyalties (array)
+            + (object)
+                + id: 1
+                + name: `Verano 2014b`
+                + points: 484
+            
+    
+    
+# Group Ayuda
+# Cómo realizar llamadas a través de *Core*
+
+Para realizar una llamada a *Cuponeo* desde *Core* hay que pasar los siguientes parámetros
+
+Atributo | Description
+-------- | -----------
+**access_token**    | Access token obtenido usando `/oauth/token.json`
+**action**          | Llamada de *cuponeo*
+**fields**          | Parámetros de la llamada de *cuponeo*
+**method**          | `GET` o `POST`
+
+Las llamadas a *Cuponeo* hechas a través de *Core* incorporarán de forma automática los campos ***application_id*** y ***user_id***. También efecturará el cifrado correspondiente.
+
+
+# Group Códigos de Respuesta
+```
+    'EC0001' => 'Éxito',
+    'EC0002' => 'La promoción no está activa o está caducada',
+    'EC0003' => 'El cupón ha excedido su número de usos',
+    'EC0004' => 'Promoción incorrecta',
+    'EC0005' => 'Aplicación incorrecta',
+    'EC0006' => 'Parámetros incorrectos',
+    'EC0007' => 'El usuario no existe',
+    'EC0008' => 'Faltan datos o los datos son incorrectos',
+    'EC0009' => 'Fallo en el descifrado de los datos',
+    'EC0010' => 'Solo el creador de la promoción tiene permiso para modificarla',
+    'EC0011' => 'Sin permisos',
+    'EC0012' => 'El cupón no existe o no pertenece al usuario',
+    'EC0013' => 'El registro ya existe',
+    'EC0014' => 'La compañía introducida no existe',
+    'EC0015' => 'Tipo de cupón incorrecto',
+    'EC0016' => 'El comercio introducido no existe',
+    'EC0017' => 'No se puede eliminar un usuario con promociones',
+    'EC0018' => 'No tienes permiso a asignar una promoción a uno más comercios introducidos',
+    'EC0019' => 'Cupón no válido a esta hora',
+    'EC0020' => 'La promoción no existe',
+    'EC0021' => 'Cupón no válido este día de la semana',
+    'EC0022' => 'No puedes borrar todos los comercios asociados a un usuario',
+    'EC0023' => 'Debe introducir el mínimo y el máximo del rango de horas válidas',
+    'EC0024' => 'No puedes añadir más de un cupón por promoción',
+    'EC0025' => 'El cupón ya ha sido utilizado hoy',
+    'EC0026' => 'El cupón introducido no puede usarse en este comercio',
+    'EC0027' => 'Error al validar los datos',
+    'EC0028' => 'Fallo al subir la imagen',
+    'EC0029' => 'No dispone de promociones libres',
+    'EC0030' => 'La fidelización introducida no existe o el usuario no tiene acceso',
+    'EC0031' => 'No existe el miembro de fidelización',
+    'EC0032' => 'El usuario ya está registrado en esa fidelización',
+    'EC0033' => 'No dispone de suficientes puntos para canjear',
+    'EC0034' => 'Pack no disponible',
+    'EC0035' => 'No existe el canje',
+    'EC0037' => 'Promoción de fidelización caducada o no empezada',
+    'EC0038' => 'Respuesta de pago fraudulenta',
+    'EC0039' => 'No puede crear más programas de fidelización',
+    'EC0040' => 'Se ha superado el número máximo de notificaciones para esta promoción',
+    'EC0041' => 'La compañía a la que perteneces no tiene ningún plan asignado',
+    'EC0042' => 'Una promoción no puede enlazarse a una promoción de tipo onceaday o stamp',
+    'EC0043' => 'Promoción de tipo no válido',
+    'EC0044' => 'Método de comunicacion no disponible',
+    'EC0045' => 'Tipo de usuario incorrecto',
+    'EC0046' => 'La empresa no existe',
+
+    'EC9999' => 'Fallo en la petición'
+```
+
+# Group Agenda
+# Descripción
+Listado de datos de usuarios con los que podremos contactar en el futuro.
+El objetivo es agilizar ciertos procesos que podrían resultar complicados, tediosos y repetitivos.
+Guarda el número de teléfono y el email. Es ampliable a cualquier conjunto de datos.
+
+## Agenda de contactos [/address_book/entries.json]
+### Crear nueva entrada [POST]
+Para añadir uno, o varios contactos en la agenda
+
+- **commerces**: Listado de id de comercios para los cuales se quiere añadir los contactos a sus agendas. Es un campo opcional. Si no se envía este parámetro los contactos se crean en la agenda correspondiente según los permisos de quien realiza la llamada. Por ejemplo si es un usuario con permisos sólo sobre un comercio, el contacto estará disponible en la agenda de ese comercio. En cambio, si tiene permisos sobre un grupo de comercios, se añadirá para todos esos comercios.
+    - *ejemplo*: `[1153, 873]`
+- **contacts**:
+    - *ejemplo*: `[{phone: 123123123}, {phone: 234234234, email:test@mail.com}]`
+
+
++ Request
+    + Attributes
+        + contacts (required) - Listado de contactos con los campos a guardar de cada uno (phone y/o email).
+        + commerces
+
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+### Listar entradas [GET]
+Es posible generar un listado con todos los contactos que dispone un comecio.
+
++ Request
+    + Attributes
+        + commerce_id (required) - Id del commercion para el cual se quiere obtener su agenda
+
++ Response 200 (application/json)
+    + Attributes (Addressbook Entries Response)
+
+
+
+# Group Cupones
+
+## Cupones de usuario [/coupons.json]
+### Listar cupones de usuario [GET]
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + commerce_id
+        + favorite
+        + code
+        + status
+
++ Response 200 (application/json)
+    + Attributes (Coupons Response)
+
+    
+### Crear cupón [POST]
++ Request
+    + Attributes
+        + application_id(required)
+        + user_id (required)
+        + promo_id (required)
+        
++ Response 200 (application/json)
+    + Attributes (Coupon Response)
+
+## Cupones de un teléfono [/coupons/get_by_phone/{phone}.json]
+### Listar cupones asociados a un teléfono [POST]
++ Parameters
+    + phone (string, required)
+
++ Request
+    + Attributes
+        + commerce_id (required)
+
++ Response 200 (application/json)
+    + Attributes (Coupons Response)
+
+## Cupones de un email [/coupons/get_by_email/{email}.json]
+### Listar cupones asociados a un e-mail [POST]
++ Parameters
+    + email (string, required)
++ Request
+    + Attributes
+        + commerce_id (required)
++ Response 200 (application/json)
+    + Attributes (Coupons Response)
+
+## Canjear cupón [/coupons/{couponCode}.json]
+### Efectuar canje [POST]
++ Parameters
+    - couponCode (string, required)
++ Request
+    + Attributes
+        + commerce_id (required) - Id del comercio donde se realiza el canje
+        + quantity - Cantidad de canjes a efectuar (default=1)
+        + referral - Identificador de a quien refiere el canje.
++ Response 200 (application/json)
+
+### Simular canje [GET]
++ Parameters
+    - couponCode (string, required)
++ Response 200 (application/json)
+
+# Group Canjes
+
+## Canjes de referral [/exchanges/referral/{referral}.json]
+
+### Listar canjes de referral [GET]
+Listado de canjes de un **referral**.
+
+**Sólo puede ser usado por comercios.**
+
+Cuando un cupón es canjeado es posible indicar a un referente con un `string`. Este método recupera todos los canjes marcados con ese referente.
+
+Por ejemplo, es posible asignar como **referral** de un canje a un número de teléfono; para luego recuperar los canjes realizados por ese teléfono.
+
++ Parameters
+    + referral (string, required)
+
++ Request
+    + Attributes (Pagination)
+
++ Response 200 (application/json)
+
+    + Attributes (Exchanges Response)
+
+
+## Canjes de usuario [/exchanges.json]
+
+### Listar canjes de usuario [GET]
+Listado de canjes del usuario que hace la llamada.
+
++ Response 200 (application/json)
+    + Attributes (Exchanges Response)
+
+
+## Canjes en comercio [/exchanges/commerce/{commerce_id}.json]
+
+### Listar canjes en comercio [GET]
+Listado de canjes realizados en un comercio
+
++ Parameters
+    + commerce_id (string, required)
+
++ Request
+    + Attributes (Pagination)
+
++ Response 200 (application/json)
+    + Attributes (Exchanges Response)
+
+
+# Group Comercios
+
+## Comercios [/commerces.json]
+### Listar Comercios [GET] 
++ Request
+    + Attributes
+        + application_id (required)
+        + active_promos: 0 (boolean) - sólo comercios con promos activas
+    
++ Response 200 (application/json)
+    + Attributes (Response)
+        + data (array)
+            + object
+                + Commerce (Commerce Data)
+                + Company (Company Data)
+            
+            
+### Crear Comercio [POST]
++ Request
+    + Attributes
+        + application_id (required)
+        + company_id (required)
+        + name (required)
+        + commerce_id (required)
+        + city (required)
+        + country (required)
+        + timezone - (default Europe/Madrid)
+        + logo - (base64)
+        
+        
+        
++ Response 200 (application/json)
+    + Attributes (Response)
+
+
+# Group Compañías
+
+## Compañías [/companies.json]
+### Crear Compañía [POST]
++ Request
+    + Attributes
+        + application_id (required)
+        + name (required)
+        + company_id (required)
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+# Group Contratos
+## Contratos [/contracts.json]
+### Añadir Contrato [POST]
+
+Asigna un contrato a la compañía. 
+
+**contract_type**:
+- *new* : Añade el contrato a la cola. Cuando termine el actual se activará el siguiente.
+- *expand*: Cambia el contrato actual por otro.
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + pack_id (required)
+        + contract_type - [new | expand] (default : new)
++ Response 200
+    + Attributes (Contract Add Response)
+
+
+# Group Esadísticas
+
+## Estadísticas de cupones [/stats/coupons.json]
+
+### Obtener estadísticas de canjes [GET]
+
+- **commerces**: Listado de ids de comercios para los cuales se quieren obtener las estadístcas. Si no se envía, aplicará a todos los comercios de la promoción.
+    - *ejemplo*: `[1153, 873]`
+
++ Request
+    + Attributes
+        + promo_id (required)
+        + commerces (array)
++ Response 200 (application/json)
+    + Attributes (Stats Coupons Response)
+    
+
+## Estadísticas de promociones simple [/stats/simple/promos.json]
+### Obtener estadísticas de promos [GET]
+
++ Request
+    + Attributes
+        + page - Número de página
+        + limit - Límite de promos por página
++ Response 200 (application/json)
+    + Attributes
+        + id - Id de la promoción
+        + title
+        + description
+        + description_short
+        + status - AC, PE, CA y FI
+        + type - Tipo de promo. coupon y stamp
+        + gift
+        + fixed_amount
+        + percentage_amount
+        + logo - Url del logo
+        + created
+        + total_coupons - Número total de cupones obtenidos por los usuarios
+        + total_exchanges - Número total de canjes de la promoción en el comercio de la llamada
+
+# Group Empresa de Usuario
+## Empresas de Usuario [/business.json]
+### Listar Empresas [GET]
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + targets (UserTarget Data) - filtrado de usuarios
+                
++ Response 200 (application/json)
+    
+### Crear Empresa [POST]
+
++ Response 200 (application/json)
+
+## Empresa de Usuario [/business/{businessId}.json]
+### Editar Empresa
+### Borrar Empresa
+
+# Group Fidelización
+
+## Crear Fidelización [/loyalties/add.json]
+### Crear Programa Fidelización [POST]
+
+- **loyalty_benefit**: array con diccionario de beneficios por ser miembro.  `[{start_date:2014-01-20,end_date:2014-02-12, percentage_amount:3}] )`
+- **fields**: Capos posibles: name, surname, surname2, country, province, locality, zip_code, gender, birthdate, dni
+- **points_exchanges** :
+    - *Ejemplo*: `[{points: 10, fixed_amount:33, percentage_amount:3, gift:tres}]`
+
++ Request
+    + Attributes
+        + application_id
+        + user_id
+        + title (required)
+        + description (required)
+        + points (required) - Puntos que se dan por unidad mínima de canje
+        + amount (required) - Cantidad mínima de canje
+        + fields (required, array) - Campos necesarios para registrar un miembro
+        + commerces (required, array) - Ids de comercios
+        + points_exchanges (required) - Premios canjeables con su coste en puntos
+        + start_date - (y-m-d h:m:s) Si no se pasa ya estará empezada
+        + end_date - (y-m-d h:m:s) Si no se pasa no termina
+        + logo
+        + loyalty_benefit - Beneficio por ser miembro
++ Response 200 (application/json)
+    + Attributes (Response)
+        + data
+            + Loyalty
+                + id: 10
+
+
+## Editar Fidelización [/loyalties/{loyalty_id}/edit.json]
+### Editar Fidelización [POST]
+Edita una fidelización
++ Parameters
+    + loyalty_id (required)
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + commerces
+        + fields
+        + points_exchanges
+        + loyalty_benefits
+        + logo
+
++ Response 200 (application/json)
+    + Attributes (Response)
+        + data
+            + id: 10
+
+## Eliminar Fidelización [/loyalties/{loyalty_id}/delete.json]
+### Eliminar Fidelización [POST]
++ Parameters
+    + loyalty_id (required)
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + loyalty_id (array) - Filtra por ids de Fidelizaciones
+        + my_loyalties (boolean) - ¿Sólo fidelizaciones propias?
+
+
++ Response 200 (application/json)
+    + Attributes (Response)
+        + data (array)
+
+
+## Fidelizaciones [/loyalties.json]
+### Listar Fidelizaciones [POST]
+
++ Request
+    + Attributes
+        + application_id
+        + user_id
++ Response 200 (application/json)
+    + Attributes (Loyalties Response)
+
+## Regalos [/loyalties/{loyalty_id}/gifts.json]
+### Listar Regalos [GET]
+Listado de regalos de la loyalty canjeables
+
++ Parameters
+    + loyalty_id (required)
+
++ Request
+    + Attributes
+        + application_id (required)
+        
++ Response 200 (application/json)
+    + Attributes (Loyalty Gifts Response)
+
+## Miembros [/loyalties/{loyalty_id}/members.json]
+### Listar Miembros [GET]
+Listado de miembros de fidelización
+
++ Parameters
+    + loyalty_id (required)
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+
++ Response 200 (application/json)
+    + Attributes (Loyalty Members List Response)
+
+## Detalles de  Miembro [/loyalties/{loyalty_id}/member_view.json]
+### Ver Detalles miembro Fidelización [GET]
+Información de un miembro de fidelización
+
+
++ Parameters
+    + loyalty_id (required)
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+
++ Response 200 (application/json)
+    + Attributes (Loyalty Member View Response)
+
+
+# Group Miembros Fidelización
+## Miembros de Fidelización [/loyalty_member.json]
+### Crear Miembro [POST]
+Suscribe un usuario a una fidelización
+
+Los campos opcionales pueden ser obligatorios, según cómo se haya creado la fidelización.
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + loyalty_id (required)
+        + name
+        + surname
+        + surname2
+        + country
+        + province
+        + locality
+        + zip_code
+        + gender
+        + birthdate - (yyyy-mm-dd)
+        + dni
+        
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+
+## Miembro de Fidelización [/loyalty_member/{loyalty_member_code}/info.json]
+### Información de membresía [GET]
++ Parameters
+    + loyalty_member_code (required)
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + commerce_id (array, required)
++ Response 200 (application/json)
+    + Attributes (Loyalty Member Info Response)
+
+## Beneficios [/loyalty_member/loyalty_benefits.json]
+### Ver Beneficios [GET]
+Obtener ventajas asociadas a una fidelización
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + commerce_id (array, required)
++ Response 200 (application/json)
+    + Attributes (Loyalty Member Benefits Response)
+
+
+## Sumar Puntos [/loyalty_member/{loyalty_member_code}/increase_points.json]
+### Sumar puntos [POST]
++ Parameters
+    + loyalty_member_code (required)
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + commerce_id (required)
+        + amount (required)
+
++ Response 200 (application/json)
+    + Attributes (Response)
+        + data 
+            + id: 16
+            + loyalty_id: 1
+            + loyalty_member_id: 8
+            + points: 2
+            + last_points: 2
+            + modified: `2014-09-05 10:04:34`
+
+
+
+## Canje de Puntos [/loyalty_member/{loyalty_member_code}/exchange.json]
+### Canjear puntos [POST]
++ Parameters
+    + loyalty_member_code (required)
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + points_exchange_id (required)
++ Response 200 (application/json)
+    + Attributes (Loyalty Member Exchange Points Rsponse)
+
+
+# Group Notificaciones
+
+## Plantillas de email [/notifications/templates.json]
+
+### Listar  [GET]
+Devuelve listado de plantillas utilizables en el envío de promociones por email.
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+
+## Enviar a usuarios [/notifications/send_to_email.json]
+### Enviar por Email [POST]
+Comunicación por email de promoción. 
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + promo_id (required)
+        + to (required) - email de destinatarios
+        + from (required) - email de remitente
+        + subject (required) - asunto del email
+        + template : default - nombre de la plantilla a utlizar. 
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+
+## Enviar a usuarios [/notifications/send_to_users.json]
+### Enviar [POST]
+Comunicación push de promoción indicada a todos los usuarios de la aplicación. 
+Si no se especifica la promoción en *promo_id*, se debe enviar *message* para enviar cualquier texto.
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + promo_id
+        + message
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+## Enviar a usuarios objetivo [/notifications/send_by_targets.json]
+### Enviar [POST]
+Comunicación push de promoción indicada los usuarios objetivo definidos en la promoción. 
+Si no se especifica la promoción en *promo_id*, se debe enviar *message* para enviar cualquier texto.
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+    
+    
+## Obtener público objetivo [/notifications/get_users_by_targets.json]
+### Obtener [GET]
+
+Lista todos los usuarios que cumplen los filtros ( *targets* ) indicados
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + targets (required)
++ Response 200 (application/json)
+    + Attributes (BasicResponse))
+    
+## Enviar Fidelización a miembros [/notifications/send_to_members.json]
+### Enviar [POST]
+
+Notifica por push un mensaje o la descripción de una fidelización a los miembros de la fidelización.
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + loyalty_id (required)
+        + members (required) - array de id de miembros
+        + message
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+## Enviar Fidelización a miembros objetivo [/notifications/send_loyalty_by_targets.json]
+### Enviar [POST]
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+## Enviar Promoción a contactos de Agenda [/notifications/send_to contacts.json]
+### Enviar [POST]
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+## Listar notificaciones push [/notifications/pushes.json]
+### Enviar [GET]
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+
+
+
+
+    
+# Group Promociones
+# Descripción
+Definimos promoción como ciertas ventajas asociadas a uno o varios comercios. Para obtener estas ventajas es necesario redimir un cupón asociado a una promoción.
+Las promociones pueden ser de distintos ***tipos***: 
+- **Un sólo uso** 
+Sus cupones podrán ser canjeados sólo una vez por usuario.
+- **Multiusos**
+Sus cupones podrán ser canjeados tantas veces por usuario como el número de usos especifcado en la promoción.
+- **Un uso al día**
+Cupones canjeables una vez al día por usuario
+- **Stamp card**
+Los beneficios se obtienen una única vez después de haber canjeado un número determinado de veces un mismo cupón.
+- **Universal**
+Sus cupones pueden ser usados por cualquier usuario. El número de canjes posibles lo define la promoción (de 1 a infinitos).
+
+
+Las promociones se pueden encontrar con estos ***estados***, definido en con la propiedad *status*:
+- **AC**
+La promoción está ACTIVA. Significa que son completamente operables. Los usuarios podrán verlas y conseguir cupones de ellas.
+- **PE**
+La promoción está PENDIENTE. Seguramente en algún momento pasará a estar ACTIVA. Las promociones en este estado son por ejemplo las que todavía no han comenzado, o porque el comercio ha rebasado su límite de promociones activas.
+- **CA**
+La promoción ha sido CANCELADA. El comercio ha eliminado forzosamente la promoción. No será operable.
+- **FI**
+La promoción ha FINALIZADO. La promoción ha caducado. Ha llegado a su fecha de vencimiento de forma natural. No será operable.
+
+## Promociones [/promos.json]
+### Crear nueva [POST]
+
+***Nota***: Es obligatorio enviar al menos uno de los campos opcionales *fixed_amount*, *percentage_amount* y *gift*
+
+
+**commerces**: Identificadores de comercios que tendrán asociada la promoción.
+
+**description_short**: Descripción corta de la promoción. 
+
+**end_date**: día en que termina la promoción. El último día es un día válido. Formato Y-m-d H:i:s. 
+
+**logo, logo2**: Logotipos de la promoción. Se admiten formatos jpeg y png. Debe pasarse codificados en base64.
+
+**start_date**: fecha de inicio de la promoción formato Y-m-d H:i:s. (zona horaria española)
+
+**targets**: Indica a quién va dirigida la promoción. El listado de promociones será filtrado según este conjunto de valores. Debe ser un array de objetos clave-valor (nombre de filtro : valor del filtro ).
+*Ejemplo:* `[{ "age":{"min":0,"max":5000}, "country":"Spain" }]`
+Los nombres de los filtros que afectan al resultado son:
+- age
+    - min (int)
+    - max (int)
+- gender ('M' o 'F' )
+- city
+- province
+- zip_code
+- country
+- type (tipo de usuario)
+    - name (new | inactive)
+    - date (nuevo usuario desde esta fecha, o inactivo desde entonces)
+
+**time_range**: rangos horarios en que la promoción estará activa. (zona horaria española)
+*Ejemplo*: `[{"start":"22:00","end":"02:00"}, {"start":"02:00","end":"03:00"}]`
+Es posible que la fecha de fin sea menor a la de inicio. Eso se traduce en que la de fin es en realidad del día siguiente.
+
+**type**: Tipo de promoción
+- stamp: stamp card
+- coupon: un sólo uso o multiusos
+- universal: universal 
+- onceaday: un uso al día
+
+**valid_days**: Días de la semana en los que la promoción es válida. Array de nombres de días en inglés.
+
+***Nota:*** *start_date* y *end_date* esperan formato `aaaa-mm-dd hh:mm:ss`. Si no se envía hora, se guardará como las 00:00:00. Día y hora en España.
+
+**Más campos opcionales**:
+- one_by_client (0 ó 1)
+- not_combinable (0 ó 1)
+- stock_limit (0 ó 1)
+- stock (solo informativo)
+- more_info
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + commerces (array, required) - Identificadores de comercios que tendrán asociada la promoción.
+        + description (required, string)
+        + title (required, string)
+        + type (required) - stamp | coupon | onceaday | universal
+        + uses (required)
+        + fixed_amount
+        + percentage_amount
+        + gift
+        + description_short
+        + logo - imagen png o jpeg en Base64
+        + start_date
+        + end_date
+        + targets (array)
+        + one_by_client - 0 | 1
+        + not_combinable - 0 | 1
+        + stock_limit - 0 | 1
+        + stock (number)
+        + more_info 
+
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+### Listado Filtrado [GET]
+
+Los ***filter*** posibles son:
+- **last** : número de resultados deseados, desde la más nueva.
+- **offset**: resultados que se ignorarán
+- **status**: (AC | FI | CA | ...)
+- **date**
+    - start - (aaaa-mm-dd)
+    - end - (aaaa-mm-dd)
+- **distance**: Km. desntro de los que puede encontrarse la promoción
+- **commerces**: array de ids de comercio
+- **redeemable**: Indica si se quieren promociones canjeables
+
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + filter
+            
+
++ Response 200 (application/json)
+    + Attributes (Promo List Response)
+
+
+
+## Estado de Promoción [/promos/{promo_id}/status.json]
+### Cambiar Estado [POST]
++ Parameters
+    + promo_id (required)
++ Request
+    + Attributes
+        + status (required) - Nuevo estado ( AC | CA | FI | PE )
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+## Listar Todas Promociones [/promo/list_all.json]
+El listado de promociones completo. Incorpora información del público objetivo de las promociones. 
+El resultado siempre estará paginado.
+### Listar todas [GET]
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + page : 1
+        + limit : 25
+
++ Response 200 (application/json)
+    + Attributes (Promo List Response)
+
+## Promoción [/promos/{promo_id}.json]
+### Ver Promoción [GET]
++ Parameters
+    + promo_id (required)
++ Request
+    + Attributes 
+        + application_id (required)
+        + user_id (required)
++ Response 200 (application/json)
+    + Attributes (Promo Response)
+
+# Group Users
+## Users [/users.json]
+### Añadir Usuario [POST]
+
+**Nota:** 
+Si se crean promociones dirigidas a un público objetivo que requiera consultar algún campo opcional del perfil de usuario, y este es nulo, la promoción no será listada para el usuario.
+
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + name (required)
+        + birthdate - aaaa-mm-dd
+        + gender - M | F
+        + province
+        + city
+        + zip_code
+        + country
+        + device - id de dispositivo de usuario
+        + device_type - AND | IOS
+        + lat (number) - Latitud de la ubicación del usuario
+        + lng (number) - Longitud de la ubicación del usuario
+        + business (string) - nombre de empresa vinculada al usuario
+        + commerce_id - Si es un usuario comercio especificar a que comercio debe estar vinculado
+        + company_id - Si es un usuario compañía especificar a que compañía debe estar vinculado
+
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+
+## Editar Usuario [/users/{user_id}/edit.json]
+### Editar Usuario [POST]
+
+Permite editar varios campos del usuario y su perfil. Los campos a editar se deben especificar en el parámetro *fields*.
+
+Campos **fields** posibles:
+- *name*
+- *birthdate*: formato aaaa-mm-dd
+- *city*
+- *country*
+- *device*: Id de dispositivo) 
+- *device_type*:  AND | IOS 
+- *gender*: M | F
+- *province* 
+- *zip_code*
+- *lat* y *lng*: Latitud y longitud de la ubicación del usuario
+- *business*: nombre de empresa vinculada al usuario
+
+
+**Ejemplo de parametro fields:**
+`{"name": "edited", "device": "NEW-DEVICE-ID", "birthdate":"1980-12-01", "gender": "M"}`
+
+**Ejemplo de petición HTTP:**
+```
+POST /users/891/edit.json HTTP/1.1
+Host: raul.api.cuponeo.paynopain.com
+Cache-Control: no-cache
+Postman-Token: a7133960-18d7-4fe9-d0b3-571343c82d9a
+Content-Type: application/x-www-form-urlencoded
+
+application_id=7&user_id=668&fields=%7B%22name%22%3A+%22edited%22%2C+%22device%22%3A+%22NEW-DEVICE-ID%22%2C+%22birthdate%22%3A%221980-12-01%22%2C+%22gender%22%3A+%22M%22%7D
+```
+
+
++ Parameters
+    + user_id (required)
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + fields (required) - Campos del perfil de usuario a modificar
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+## Editar Usuario Comercio [/users/commerce/edit.json]
+### Editar Usuario [POST]
+
+Permite editar varios campos del usuario de tipo comercio y su perfil. Los campos a editar se deben especificar en el parámetro *fields*.
+
+Campos **fields** posibles:
+- *name*
+- *phone*
+- *email*
+- *dni*
+- *position*: Cargo del usuario
+
+**Ejemplo de parametro fields:**
+`{"name": "Pepe Garcia", "phone": "600112233", "dni":"12345678A", "position": "Camarero"}`
+
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + fields (required) - Campos del perfil de usuario a modificar
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
+## Resumen de Usuario [/users/{user_id}/summary.json]
+### Obtener [GET]
+
+En la respuesta se devolverá un listado de loyalties por cada commerce. Por cada una de estas loyalties, hay un campo points que indica cuantos puntos tiene el usuario en esa loyalty. 
+**Nota:** Si *points* de una *loyalty* es *null*, significa que el usuario no es miembro de esa *loyalty*.
+
+Ejemplo de llamada:
+
+`https://ccoupons.local/users/63/summary.json?commerces=[11,5,7]&application_id=5&user_id=247`
+
++ Parameters
+    + user_id (required)
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + commerces (required) - Array de identificadores de comercio
++ Response 200 (application/json)
+    + Attributes (User Summary Response)
