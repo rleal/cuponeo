@@ -198,6 +198,15 @@ API para gestionar promociones y programas de fidelización.
         + end_date: 2015-06-30
 
 
+### Pack Data (object)
++ Pack
+    + id: `2`
+    + name: `bronce`
+    + promos: `11`
+    + loyalties: `10`
+    + price: `100`
+    + duration: `1`
+
 ### Promo Basic Data
 + auto_coupons: true
 + automatic: false
@@ -373,6 +382,9 @@ API para gestionar promociones y programas de fidelización.
 
 ### Coupons Response (Response)
 + data (array[Coupon Data]) - Datos de la respuesta
+
+### Packs List Response (Response)
++ data (array[Pack Data])
 
 ### Response (object)
 + code: EC0001 (string) - Código de respuesta
@@ -1193,6 +1205,15 @@ Notifica por push un mensaje o la descripción de una fidelización a los miembr
 
 
 
+# Group Packs
+## Packs [/packs.json]
+### Listar [GET]
++ Request
+    + Attributes
+        + application_id (required)
++ Response 200 (application/json)
+    + Attributes (Packs List Response)
+    
 
 
     
