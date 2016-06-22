@@ -1215,7 +1215,18 @@ Notifica por push un mensaje o la descripción de una fidelización a los miembr
     + Attributes (Packs List Response)
     
 
-
+# Group Pagos
+## Tarjeta [/payment/card.json]
+### Añadir [POST]
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + card_token (required)
+        + expires (required) - Y-m
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+    
     
 # Group Promociones
 # Descripción
