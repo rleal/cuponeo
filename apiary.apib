@@ -1216,6 +1216,23 @@ Notifica por push un mensaje o la descripción de una fidelización a los miembr
     
 
 # Group Pagos
+## Comprar Pack [/pack_payment.json]
+### Registrar Compra de Pack [POST]
++ Request
+    + Attributes
+        + PNPData
+            + PNPAdditional
+                + user_id
+                + application_id
+                + pack_id
+                + contract_type - new | expand
+        + PNPDigest
+        
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+        + data 
+            + PNPData
+
 ## Tarjeta [/payment/card.json]
 ### Añadir [POST]
 + Request
