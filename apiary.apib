@@ -365,9 +365,6 @@ API para gestionar promociones y programas de fidelización.
     + commerces (array) - listado de ids de comercio
 
 
-
-
-
 ## Responses
 
 
@@ -790,6 +787,25 @@ Listado de canjes realizados en un comercio
 
 # Group Compañías
 
+
+## Pagos Recurrentes [/company/{companyId}/recurring_payment.json]
+
+### Activar pago recurrente [POST]
++ Request
+    + Attributes 
+        + application_id (required)
+        + user_id (required)
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+    
+### Desactivar pago recurrent [DELETE]
++ Request
+    + Attributes 
+        + application_id (required)
+        + user_id (required)
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
 ## Compañías [/companies.json]
 ### Crear Compañía [POST]
 + Request
@@ -799,8 +815,10 @@ Listado de canjes realizados en un comercio
         + company_id (required)
 + Response 200 (application/json)
     + Attributes (BasicResponse)
+    
 
 # Group Contratos
+
 ## Contratos [/contracts.json]
 ### Añadir Contrato [POST]
 
@@ -818,6 +836,8 @@ Asigna un contrato a la compañía.
         + contract_type - [new | expand] (default : new)
 + Response 200
     + Attributes (Contract Add Response)
+
+
 
 
 # Group Esadísticas
