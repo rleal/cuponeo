@@ -37,10 +37,13 @@ API para gestionar promociones y programas de fidelización.
 
 
 ### Contract Data (object)
+
 + pack_id: 2
-+ start: "2017-01-13"
-+ expire: "2017-02-13"
-+ status: "PE"
++ created: `2017-01-01 00:00:00`
++ modified: `2017-01-01 00:00:00`
++ start: `2017-01-13`
++ expire: `2017-02-13`
++ status: `PE`
 
 ### Pagination (object)
 + limit: 100 (number) - Número de resultados
@@ -199,13 +202,12 @@ API para gestionar promociones y programas de fidelización.
 
 
 ### Pack Data (object)
-+ Pack
-    + id: `2`
-    + name: `bronce`
-    + promos: `11`
-    + loyalties: `10`
-    + price: `100`
-    + duration: `1`
++ id: `2`
++ name: `bronce`
++ promos: `11`
++ loyalties: `10`
++ price: `100`
++ duration: `1`
 
 ### Promo Basic Data
 + auto_coupons: true
@@ -372,7 +374,16 @@ API para gestionar promociones y programas de fidelización.
 + data (array[Exchange Data]) - Datos de la respuesta
 
 ### Contract Add Response (Response)
-+ data (Contract Data)
++ data 
+    + Contract (Contract Data)
+    + Pack (Pack Data)
+
+### Contracts List Response (Response)
++ data (array)
+    + (object)
+        + Contract (Contract Data)
+        + Pack (Pack Data)
+        
 
 ### Coupon Response (Response)
 + data (Coupon Data)
@@ -381,7 +392,9 @@ API para gestionar promociones y programas de fidelización.
 + data (array[Coupon Data]) - Datos de la respuesta
 
 ### Packs List Response (Response)
-+ data (array[Pack Data])
++ data (array)
+    + (object)
+        + Pack (Pack Data)
 
 ### Response (object)
 + code: EC0001 (string) - Código de respuesta
@@ -762,7 +775,7 @@ Listado de canjes realizados en un comercio
 + Response 200 (application/json)
     + Attributes (Response)
         + data (array)
-            + object
+            + (object)
                 + Commerce (Commerce Data)
                 + Company (Company Data)
             
@@ -838,7 +851,17 @@ Asigna un contrato a la compañía.
     + Attributes (Contract Add Response)
 
 
+### Listar Contratos [GET]
 
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        + company_id (required)
+        
++ Response 200 (application/json)
+    + Attributes (Contracts List Response)
+        
 
 # Group Esadísticas
 
@@ -1236,7 +1259,7 @@ Notifica por push un mensaje o la descripción de una fidelización a los miembr
     
 
 # Group Pagos
-## Comprar Pack [/pack_payment.json]
+## Comprar Pack [/packs/pack_payment.json?application_id={applicationId}]
 ### Registrar Compra de Pack [POST]
 + Request
     + Attributes
