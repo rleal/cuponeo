@@ -45,9 +45,50 @@ API para gestionar promociones y programas de fidelización.
 + expire: `2017-02-13`
 + status: `PE`
 
+
+### Coupon Data (object)
++ actual_uses: 0 (string)
++ code: C2AQMBH5UDT2WW5M (string)
++ coupon_id: 881 (string)
++ date_added: `2014-11-25 17:42:31`
++ status: FI (string)
++ viewed: false (boolean)
++ favorite: false (boolean)
++ company_name: `Compañía prueba`
++ description: `Descripción completa de la promoción`
++ description_short: `Descripción corta de la promo`
++ end_date: `2014-11-26 00:00:00`
++ fixed_amount: 0 (string)
++ gift: ` `
++ gift_products (array)
+    + 1344
++ limit_uses: 3 (string)
++ logo
++ logo_brand
++ percentage_amount: 0
++ products (array)
+    + 302
++ promo_id: 466
++ loyalty_id
++ start_date: `2014-11-04 00:00:00`
++ time_ranges (array)
+    + (Time Range)
+    + (Time Range)
++ title: `Título de la promoción`
++ type: stamp
++ valid_days (Valid Days)
+
+
+
 ### Pagination (object)
 + limit: 100 (number) - Número de resultados
 + page: 1 (number) - Número de página
+
+### Payment Data (object)
++ id : 1 (number)
++ amount: 1234 (number) - centimos
++ concept: 'Concepto del pago'
++ created: `2016-01-01 00:00:00`
 
 ### Time Range (object)
 + start: `00:00:00`,
@@ -93,38 +134,6 @@ API para gestionar promociones y programas de fidelización.
 + date_added: `2014-06-24 09:03:48`,
 + user_name: John Doe,
 + commerce_name: Nombre de Comercio
-
-### Coupon Data (object)
-+ actual_uses: 0 (string)
-+ code: C2AQMBH5UDT2WW5M (string)
-+ coupon_id: 881 (string)
-+ date_added: `2014-11-25 17:42:31`
-+ status: FI (string)
-+ viewed: false (boolean)
-+ favorite: false (boolean)
-+ company_name: `Compañía prueba`
-+ description: `Descripción completa de la promoción`
-+ description_short: `Descripción corta de la promo`
-+ end_date: `2014-11-26 00:00:00`
-+ fixed_amount: 0 (string)
-+ gift: ` `
-+ gift_products (array)
-    + 1344
-+ limit_uses: 3 (string)
-+ logo
-+ logo_brand
-+ percentage_amount: 0
-+ products (array)
-    + 302
-+ promo_id: 466
-+ loyalty_id
-+ start_date: `2014-11-04 00:00:00`
-+ time_ranges (array)
-    + (Time Range)
-    + (Time Range)
-+ title: `Título de la promoción`
-+ type: stamp
-+ valid_days (Valid Days)
 
 
 ### Loyalty Data
@@ -406,8 +415,6 @@ API para gestionar promociones y programas de fidelización.
 ### Addressbook Entries Response (Response)
 + data (array[Addressbook Entry Data]) - Datos del contacto
 
-### Stats Coupons Response (Response)
-+ data (Stats Coupons Data)
 
 ### Loyalties Response (Response)
 + data (array)
@@ -514,6 +521,10 @@ API para gestionar promociones y programas de fidelización.
         + created: `2016-02-15 13:41:35`
         + id: 619
 
+### List Payments Response (Response)
++ data (array)
+    + (object)
+        + UserPayment (Payment Data)
 
 ### Promo Response (Response)
 + data (Promo Data) - Datos detallados de la promoción
@@ -532,6 +543,10 @@ API para gestionar promociones y programas de fidelización.
         + Child (object)
             + id
    
+
+### Stats Coupons Response (Response)
++ data (Stats Coupons Data)
+
 
 ### User Summary Response (Response)
 + data (array)
@@ -779,6 +794,7 @@ Listado de canjes realizados en un comercio
                 + Company (Company Data)
             
             
+
 ### Crear Comercio [POST]
 + Request
     + Attributes
@@ -791,11 +807,39 @@ Listado de canjes realizados en un comercio
         + timezone - (default Europe/Madrid)
         + logo - (base64)
         
++ Response 200 (application/json)
+    + Attributes (Response)
+
+
+## Editar Comercio [/commerces/{commerceId}/edit.json]
+### Editar Comercio [POST]
++ Parameters
+    + commerceIedit d (string, required)
+    
++ Request
+    + Attributes
+        + application_id (required)
+        + urls (array)
+        + logo
+        + name
+        + address
+        + zip_code
+        + lng
+        + lat
+        + radius
+        + city
+        + province
+        + country
+        + description
+        + email
+        + phone
+        + web
+        + opening_hours 
+        + timezone
         
         
 + Response 200 (application/json)
     + Attributes (Response)
-
 
 # Group Compañías
 
@@ -1258,7 +1302,17 @@ Notifica por push un mensaje o la descripción de una fidelización a los miembr
     
 
 # Group Pagos
-## Comprar Pack [/packs/pack_payment.json?application_id={applicationId}]
+## Pagos [/user/payments.json]
+### Listar Pagos [GET]
++ Request
+    + Attributes
+        + application_id (required)
+        + user_id (required)
+        
++ Response 200 (application/json)
+    + Attributes (List Payments Response)
+
+## Comprar Pack [/payment/pack.json?application_id={applicationId}]
 ### Registrar Compra de Pack [POST]
 + Request
     + Attributes
