@@ -558,8 +558,13 @@ API para gestionar promociones y programas de fidelización.
                 + id: 1
                 + name: `Verano 2014b`
                 + points: 484
-            
-    
+
+### List Commerces Response (Response)
++ data(array)
+    + (object)
+        + Commerce (Commerce Data)
+        + Company (Company Data)
+
     
 # Group Ayuda
 # Cómo realizar llamadas a través de *Core*
@@ -784,16 +789,10 @@ Listado de canjes realizados en un comercio
 + Request
     + Attributes
         + application_id (required)
-        + active_promos: 0 (boolean) - sólo comercios con promos activas
+        + active_promos: 0 (number) - sólo comercios con promos activas
     
 + Response 200 (application/json)
-    + Attributes (Response)
-        + data (array)
-            + (object)
-                + Commerce (Commerce Data)
-                + Company (Company Data)
-            
-            
+    + Attributes (List Commerces Response)
 
 ### Crear Comercio [POST]
 + Request
@@ -811,15 +810,15 @@ Listado de canjes realizados en un comercio
     + Attributes (Response)
 
 
-## Editar Comercio [/commerces/{commerceId}/edit.json]
+## Editar Comercio [/commerces/{commerceId}.json]
 ### Editar Comercio [POST]
 + Parameters
-    + commerceIedit d (string, required)
+    + commerceId (string, required)
     
 + Request
     + Attributes
         + application_id (required)
-        + urls (array)
+        + urls - (json)
         + logo
         + name
         + address
@@ -834,7 +833,7 @@ Listado de canjes realizados en un comercio
         + email
         + phone
         + web
-        + opening_hours 
+        + opening_hours - (json)
         + timezone
         
         
@@ -1246,7 +1245,7 @@ Lista todos los usuarios que cumplen los filtros ( *targets* ) indicados
         + targets (required)
 + Response 200 (application/json)
     + Attributes (BasicResponse))
-    
+
 ## Enviar Fidelización a miembros [/notifications/send_to_members.json]
 ### Enviar [POST]
 
@@ -1340,7 +1339,7 @@ Notifica por push un mensaje o la descripción de una fidelización a los miembr
 + Response 200 (application/json)
     + Attributes (BasicResponse)
     
-    
+
 # Group Promociones
 # Descripción
 Definimos promoción como ciertas ventajas asociadas a uno o varios comercios. Para obtener estas ventajas es necesario redimir un cupón asociado a una promoción.
@@ -1409,6 +1408,8 @@ Es posible que la fecha de fin sea menor a la de inicio. Eso se traduce en que l
 - onceaday: un uso al día
 
 **valid_days**: Días de la semana en los que la promoción es válida. Array de nombres de días en inglés.
+
+**schedule**: Programación o planificación de la notificación de la promoción, también define  La planifición acepta
 
 ***Nota:*** *start_date* y *end_date* esperan formato `aaaa-mm-dd hh:mm:ss`. Si no se envía hora, se guardará como las 00:00:00. Día y hora en España.
 
