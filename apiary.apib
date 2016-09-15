@@ -375,6 +375,12 @@ API para gestionar promociones y programas de fidelización.
     + value (number)
     + commerces (array) - listado de ids de comercio
 
+### unique fields (array)
++ name (optional)
++ cif (optional)
++ email (optional)
++ phone (optional)
++ web (optional)
 
 ## Responses
 
@@ -839,6 +845,17 @@ Listado de canjes realizados en un comercio
         
 + Response 200 (application/json)
     + Attributes (Response)
+
+## Comprobar campos únicos [/commerces/unique_fields.json]
+### Comprobar campos [GET] 
++ Request
+    + Attributes
+        + application_id (required)
+        + fields (unique fields) - Campos a comprobar
+    
++ Response 200 (application/json)
+    + Attributes (BasicResponse)
+
 
 # Group Compañías
 
