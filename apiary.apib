@@ -571,7 +571,14 @@ API para gestionar promociones y programas de fidelización.
         + Commerce (Commerce Data)
         + Company (Company Data)
 
-    
+### User Role Response (Response)
++ data(array)
+    + (object)
+        + user_id: 1
+        + name: Pepe Martín
+        + role: user - Posibles roles user, commerce, company y admin
+
+        
 # Group Ayuda
 # Cómo realizar llamadas a través de *Core*
 
@@ -1641,3 +1648,12 @@ Ejemplo de llamada:
         + commerces (required) - Array de identificadores de comercio
 + Response 200 (application/json)
     + Attributes (User Summary Response)
+
+## Obtener rol del usuario [/users/me.json]
+### Obtener rol [GET]
++ Request
+    + Attributes 
+        + application_id (required)
+        + user_id (required)
++ Response 200 (application/json)
+    + Attributes (User Role Response)
