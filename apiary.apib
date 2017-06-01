@@ -548,8 +548,31 @@ API para gestionar promociones y programas de fidelización.
             + name
         + Child (object)
             + id
-   
 
+   
+### Coupon Exchange Response (Response)
++ data (array)
+    + (object)
+        + actual_uses : 1
+        + code: "NFJUQEQLZQXRD6TT"
+        + end_date: "2017-09-06 00:00:00"
+        + favorite: false
+        + fixed_amount: "0"
+        + gift: ""
+        + gift_products: []
+        + limit_uses: "5"
+        + percentage_amount: "500"
+        + status: "FI"
+        + viewed: false
+        + web: ""
+        + one_by_client: "0"
+        + not_combinable: "0"
+        + stock_limit: "0"
+        + stock: "0"
+        + more_info: ""
+        + products: []
+        + type: "coupon"
+    
 ### Stats Coupons Response (Response)
 + data (Stats Coupons Data)
 
@@ -580,6 +603,22 @@ API para gestionar promociones y programas de fidelización.
 
         
 # Group Ayuda
+
+Existen dos formas de usar la API de *Cuponeo*. Una es llamando directamente mediante cifrado y la otra mediante la API de *Core* (API que incorpora sistema de compras y login de usuarios).
+
+# Cómo realizar llamadas directamente
+
+Para realizar una llamada a *Cuponeo* se deben enviar los datos cifrados usando la clave que se proporcionará al cliente. El método de cifrado es AES 256 (Rijndael).
+Los parámetros de requeridos son:
+
+Atributo | Description
+-------- | -----------
+**iv**              | "init vector" para el cifrado vuestro y el posterior descifrado de la API. Debe enviarse en base64
+**application_id**  | Identificador del cliente. Lo proporciona Paynopain junto con la clave de cifrado
+**encrypted**       | Este campo contiene los parámetros requeridos por los métodos de la documentación en un JSON cifrado con la clave y el IV que generes. Todo ello en base64
+
+Las llamadas deben hacerse por GET o POST según requiera el método llamado.
+
 # Cómo realizar llamadas a través de *Core*
 
 Para realizar una llamada a *Cuponeo* desde *Core* hay que pasar los siguientes parámetros
@@ -741,11 +780,35 @@ Es posible generar un listado con todos los contactos que dispone un comecio.
         + quantity - Cantidad de canjes a efectuar (default=1)
         + referral - Identificador de a quien refiere el canje.
 + Response 200 (application/json)
+    + Attributes (Response)
+        + data (object)
+            + fixed_amount: "0"
+            + percentage_amount: "500"
+            + gift: ""
+            + gift_products: []
+            + actual_uses: 1
+            + limit_uses: "5"
+            + favorite: false
+            + viewed: false
+            + products: []
+            + type: "coupon"
+
+
 
 ### Simular canje [GET]
 + Parameters
     - couponCode (string, required)
+    
++ Request
+    + Attributes
+        + commerce_id (required) - Id del comercio donde se realiza el canje
+        + quantity - Cantidad de canjes a efectuar (default=1)
+        + referral - Identificador de a quien refiere el canje.
+        
+    
 + Response 200 (application/json)
+    + Attributes (Coupon Exchange Response)
+
 
 # Group Canjes
 
@@ -1466,6 +1529,7 @@ Es posible que la fecha de fin sea menor a la de inicio. Eso se traduce en que l
         + stock_limit - 0 | 1
         + stock (number)
         + more_info 
+        + web (string)
 
 + Response 200 (application/json)
     + Attributes (BasicResponse)
@@ -1475,7 +1539,7 @@ Es posible que la fecha de fin sea menor a la de inicio. Eso se traduce en que l
 Los ***filter*** posibles son:
 - **last** : número de resultados deseados, desde la más nueva.
 - **offset**: resultados que se ignorarán
-- **status**: (AC | FI | CA | ...)
+- **status**: array de status (AC | FI | CA | ...)
 - **date**
     - start - (aaaa-mm-dd)
     - end - (aaaa-mm-dd)
